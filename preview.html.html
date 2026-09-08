@@ -12,7 +12,7 @@
     }
 
     body {
-      background-color: #121212; /* خلفية غامقة */
+      background-color: #121212;
       height: 100vh;
       display: flex;
       justify-content: center;
@@ -31,7 +31,6 @@
       cursor: pointer;
     }
 
-    /* تصميم الظرف */
     .envelope {
       position: relative;
       width: 300px;
@@ -41,7 +40,6 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
 
-    /* غطاء الظرف العلوي */
     .envelope .flap {
       position: absolute;
       top: 0;
@@ -54,7 +52,6 @@
       z-index: 4;
     }
 
-    /* جيب الظرف الأمامي */
     .envelope .pocket {
       position: absolute;
       bottom: 0;
@@ -66,7 +63,6 @@
       z-index: 3;
     }
 
-    /* الورقة داخل الظرف */
     .letter {
       position: absolute;
       bottom: 0px;
@@ -80,7 +76,7 @@
       z-index: 1;
       padding: 15px;
       opacity: 0;
-      display: block; /* نظام العرض للتحكم المطلق في النص */
+      display: block;
     }
 
     .sorry-text {
@@ -88,24 +84,31 @@
       font-size: 18px;
       font-weight: bold;
       text-align: center;
-      margin-top: 15px;
+      margin-top: 10px;
+    }
+
+    .arabic-text {
+      color: #444;
+      font-size: 13px;
+      text-align: center;
+      margin-top: 8px;
+      direction: rtl; /* ضبط اتجاه النص العربي */
+      font-weight: 500;
     }
 
     .heart {
       color: red;
-      font-size: 22px;
+      font-size: 20px;
     }
 
-    /* تثبيت النص تحت على الشمال خالص */
     .from-text {
       color: #666;
       font-size: 12px;
       position: absolute;
-      bottom: 10px; /* المسافة من الأسفل */
-      left: 12px;   /* المسافة من الشمال خالص */
+      bottom: 10px;
+      left: 12px;
     }
 
-    /* زر Pull Me في منتصف الظرف */
     .pull-tag {
       position: absolute;
       top: 50%;
@@ -121,7 +124,6 @@
       z-index: 5;
     }
 
-    /* فتح الظرف وظهور الرسالة */
     .envelope-wrapper.open .flap {
       transform: rotateX(180deg);
       z-index: 0;
@@ -142,7 +144,6 @@
 </head>
 <body>
 
-  <!-- ملف الأغنية song.mp3 -->
   <audio id="bg-music" loop>
     <source src="song.mp3" type="audio/mpeg">
   </audio>
@@ -154,6 +155,7 @@
         <div class="pocket"></div>
         <div class="letter">
           <p class="sorry-text">iam sorryyyyyyyy <span class="heart">❤️</span></p>
+          <p class="arabic-text">أنا أسف أنا مكنتش قاصد أضايقك حقك عليا</p>
           <p class="from-text">from your gazara</p>
         </div>
         <div class="pull-tag" id="pull-btn">Pull me</div>
