@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I'm Sorry</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #121212; /* خلفية غامقة */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      margin-top: 60px;
+    }
+
+    .envelope-wrapper {
+      position: relative;
+      cursor: pointer;
+    }
+
+    /* تصميم الظرف */
+    .envelope {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      background-color: #f3e5ab;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    /* غطاء الظرف العلوي */
+    .envelope .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-left: 150px solid transparent;
+      border-right: 150px solid transparent;
+      border-top: 115px solid #e6d396;
+      transform-origin: top;
+      transition: transform 0.6s ease;
+      z-index: 4;
+    }
+
+    /* جيب الظرف الأمامي */
+    .envelope .pocket {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-left: 150px solid #ecd89d;
+      border-right: 150px solid #ecd89d;
+      border-bottom: 110px solid #dfca8c;
+      border-radius: 0 0 10px 10px;
+      z-index: 3;
+    }
+
+    /* الورقة داخل الظرف */
+    .letter {
+      position: absolute;
+      bottom: 0px;
+      left: 15px;
+      width: 270px;
+      height: 100px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.8s ease, height 0.8s ease;
+      z-index: 1;
+      padding: 15px;
+      opacity: 0;
+      display: block; /* نظام العرض للتحكم المطلق في النص */
+    }
+
+    .sorry-text {
+      color: #333;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .heart {
+      color: red;
+      font-size: 22px;
+    }
+
+    /* تثبيت النص تحت على الشمال خالص */
+    .from-text {
+      color: #666;
+      font-size: 12px;
+      position: absolute;
+      bottom: 10px; /* المسافة من الأسفل */
+      left: 12px;   /* المسافة من الشمال خالص */
+    }
+
+    /* زر Pull Me في منتصف الظرف */
+    .pull-tag {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ff4b2b;
+      color: white;
+      padding: 8px 22px;
+      border-radius: 20px;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: opacity 0.4s ease;
+      z-index: 5;
+    }
+
+    /* فتح الظرف وظهور الرسالة */
+    .envelope-wrapper.open .flap {
+      transform: rotateX(180deg);
+      z-index: 0;
+    }
+
+    .envelope-wrapper.open .letter {
+      transform: translateY(-120px);
+      height: 170px;
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .envelope-wrapper.open .pull-tag {
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ملف الأغنية song.mp3 -->
+  <audio id="bg-music" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+    <div class="envelope-wrapper" id="envelope">
+      <div class="envelope">
+        <div class="flap"></div>
+        <div class="pocket"></div>
+        <div class="letter">
+          <p class="sorry-text">iam sorryyyyyyyy <span class="heart">❤️</span></p>
+          <p class="from-text">from your gazara</p>
+        </div>
+        <div class="pull-tag" id="pull-btn">Pull me</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    const music = document.getElementById('bg-music');
+
+    envelope.addEventListener('click', () => {
+      envelope.classList.toggle('open');
+      
+      if (music.paused) {
+        music.play().catch(e => console.log("Audio play error:", e));
+      }
+    });
+  </script>
+</body>
+</html>
